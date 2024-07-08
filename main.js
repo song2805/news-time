@@ -3,7 +3,7 @@ const API_KEY = config.apikey;
 let newsList = [];
 const getLatestNews = async () => {
     const url = new URL(
-        `https://fabulous-chaja-32264f.netlify.app/top-headlines?country=kr&pageSize=${PAGE_SIZE}`
+        `https://fabulous-chaja-32264f.netlify.app/top-headlines?country=kr&`
     );
     const response = await fetch(url);
     const data = await response.json();
