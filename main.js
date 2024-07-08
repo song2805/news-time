@@ -1,9 +1,9 @@
-// 뉴스를 가져오는 코드
+// 뉴스를 가져오는 코드  https://newsapi.org/v2   ${API_KEY}
 const API_KEY = config.apikey;
 let newsList = [];
 const getLatestNews = async () => {
     const url = new URL(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
+        `https://fabulous-chaja-32264f.netlify.app/top-headlines?country=kr&pageSize=${PAGE_SIZE}`
     );
     const response = await fetch(url);
     const data = await response.json();
