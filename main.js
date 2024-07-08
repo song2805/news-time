@@ -1,5 +1,5 @@
 // 뉴스를 가져오는 코드  https://newsapi.org/v2   ${API_KEY}
-const API_KEY = config.apikey;
+// const API_KEY = config.apikey;
 let newsList = [];
 const getLatestNews = async () => {
     const url = new URL(
