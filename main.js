@@ -29,6 +29,7 @@ async function fetchNews2() {
     const data = await response.json();
     newsList = data.articles;
     render();
+    console.log("data", newsList)
 }
 
 // error check
@@ -38,6 +39,7 @@ const fetchNews = async () => {
         const data = await response.json();
         newsList = data.articles;
         render();
+        console.log("ddd", newsList)
     } catch (error) {
         console.error("Error fetching news:", error);
     }
@@ -60,6 +62,7 @@ const getLatestNews = () => {
         `https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?`
     );
   fetchNews();
+  
 };
 
 //ES6 문법
