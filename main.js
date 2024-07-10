@@ -1,4 +1,4 @@
-const API_KEY = config.apikey;
+// const API_KEY = config.apikey;
 let newsList = [];
 
 //1. 버튼에 클릭 이벤트주기 (menus 7개 가져오기)
