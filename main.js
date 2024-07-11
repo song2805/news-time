@@ -1,8 +1,13 @@
 // const API_KEY = config.apikey;
 let newsList = [];
 
+
+// search with the enter button
+const searchInput = document.getElementById("search-news");
+const searchButton = document.getElementById("search-button");
+
 //1. 버튼에 클릭 이벤트주기 (menus 7개 가져오기)
-const menus = document.querySelectorAll(".menus button")
+const menus = document.querySelectorAll(".menus button");
 console.log("mm ", menus);
 
 //menu 7개의 각각 click event 주기 
@@ -60,13 +65,14 @@ const getNewsByCategory = async (event) => {
 // 4. 키워드로 검색하기
 const getNewsBySearch = () => {
     searchNews = document.getElementById("search-news").value;
-
+    
     url = new URL(
         // `https://newsapi.org/v2/top-headlines?country=kr&q=${searchNews}&apiKey=${API_KEY}`
 
         `https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?q=${searchNews}`
     );
     fetchNews();
+    searchInput.value=" ";
     console.log("search-News", data);
 };
 
@@ -90,6 +96,33 @@ const openMenus = () => {
     }
   };
 
+
+  // 7. search with the enter button 
+
+  
+
+  
+
+  //Enter 버튼 클릭하면 자동으로 아이템 추가하기 및 글씨를 자동으로 지워줌
+  searchInput.addEventListener("keydown",(event) => {
+    if (event.key === 'Enter') {
+        searchButton.click();
+        addTask();
+        }
+        
+    });
+
+    function addTask() {
+        console.log("clicked");
+      
+    
+        let taskValue = searchInput.value;
+        if (taskValue === "") {
+             return alert("검색어를 입력해주세요");
+            }
+            searchInput.value=" ";    
+
+    }
 
 
 // 뉴스
