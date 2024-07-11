@@ -20,7 +20,13 @@ let url = new URL(
 const fetchNews = async () => {
     try {
         const response = await fetch(url);
+        console.log("response error", response)
         const data = await response.json();
+        if(response.status === 200) {
+            newsList = data.articles;
+            render();
+        }
+        console.log("data error", date)
         newsList = data.articles;
         render();
     } catch (error) {

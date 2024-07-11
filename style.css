@@ -46,10 +46,6 @@ a {
   display: none;
 }
 
-#menu-list {
-  display: block;
-}
-
 #menu-ham-bar, #search-icon{
   padding: 1em;
   /* 커서를 손모양(pointer)로 설정하기 */
@@ -107,10 +103,15 @@ a {
     }
     #menu-list {
       display: none;
+      
     }
     #side-menu-list {
       display: block;
       text-align: center;
+    }
+    .menu-disable-double {
+      margin-top: 1em;
+      border-bottom: 4px double #000;
     }
   }
 
