@@ -40,7 +40,7 @@ a {
     padding-bottom: 10px;
 }
 
-/* menu */
+/* menu search*/
 
 #input-area, #menu-ham-bar{
   display: none;
@@ -49,6 +49,13 @@ a {
 #menu-list {
   display: block;
 }
+
+#menu-ham-bar, #search-icon{
+  padding: 1em;
+  /* 커서를 손모양(pointer)로 설정하기 */
+  cursor: pointer;
+}
+
 
 /* side menu */
 
@@ -96,7 +103,7 @@ a {
   @media (max-width: 992px) {
     #menu-ham-bar{
       display: inline;
-      padding-right: 1em;
+      padding-right: 0.5em;
     }
     #menu-list {
       display: none;

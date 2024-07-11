@@ -14,10 +14,12 @@
     <section class="container">
         <section class="nav-menu">
             <span id="menu-ham-bar">
-                <i class="fa-solid fa-bars" onclick="openMenus()"></i>
+                <i class="fa-solid fa-bars hamburger" onclick="openMenus()"></i>
             </span>
 
-            <i class="fa-solid fa-magnifying-glass search-icon" onclick="openSearch()"></i>
+            <span id="search-icon">
+                <i class="fa-solid fa-magnifying-glass" onclick="openSearch()"></i>
+            </span>            
             <span id="input-area">
                 <input type="text" id="search-news">
                 <button class="search-button" onclick="getNewsBySearch()">search</button>
