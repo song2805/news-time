@@ -99,6 +99,26 @@ const getNewsBySearch = () => {
     console.log("search-News", data);
 };
 
+// 6 hamburger menu
+
+const openMenus = () => {
+    document.getElementById("mySidenav").style.width = "250px";
+  };
+  
+  const closeNav = () => {
+    document.getElementById("mySidenav").style.width = "0";
+  };
+
+//   Search window
+  const openSearch = () => {
+    let inputArea = document.getElementById("input-area");
+    if (inputArea.style.display === "inline") {
+      inputArea.style.display = "none";
+    } else {
+      inputArea.style.display = "inline";
+    }
+  };
+
 
 
 // 뉴스
