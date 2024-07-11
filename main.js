@@ -1,5 +1,4 @@
 // const API_KEY = config.apikey;
-const API_KEY = `1daa3679e7cd4133b45006b3ddf923a2`;
 let newsList = [];
 
 //1. 버튼에 클릭 이벤트주기 (menus 7개 가져오기)
@@ -17,22 +16,6 @@ let url = new URL(
 
 );
 
-// URL을 기반으로 뉴스를 가져오기 함수
-// const fetchNews = async () => {
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     newsList = data.articles;
-//     render();
-// };
-
-// async function fetchNews2() {
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     newsList = data.articles;
-//     render();
-    // console.log("data", newsList)
-// }
-
 // error check
 const fetchNews = async () => {
     try {
@@ -44,16 +27,6 @@ const fetchNews = async () => {
         console.error("Error fetching news:", error);
     }
 };
-
-// const getLatestNews = async () => {
-//     const url = new URL(
-//         `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
-//     );
-// const url = new URL(
-//     `https://fabulous-chaja-32264f.netlify.app/top-headlines?country=kr&`
-// );
-
-
 
 const getLatestNews = () => {
     url = new URL(
@@ -69,8 +42,6 @@ const getLatestNews = () => {
 //ES6 문법
 const getNewsByCategory = async (event) => {
 
-    // 2. 카테고리는 뉴스를 가져오기 위해서 각각의 카테고리 버튼을 누를 때 알 수 있게 한다.
-    // 그리고 index.html menu 시작 글짜가 대문자이다. 그래서 toLowerCase() 함수로 소문자로 맞춰준다.   그럼 한글 메뉴였다면 어떻게 영문 그리고 소문자로 바꿔줄 수 있을까? 마지막에 고민해보자!
     const category = event.target.textContent.toLowerCase();
 
     //2.카테고리별 뉴스 가져오기
