@@ -18,7 +18,6 @@ let url = new URL(
     // `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${API_KEY}`
 
     `https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?`
-
 );
 
 // error check
@@ -26,12 +25,23 @@ const fetchNews = async () => {
     try {
         const response = await fetch(url);
         const data = await response.json();
-        newsList = data.articles;
-        render();
+
+        if (response.status === 200) {
+            if(data.articles.length ===0){
+                throw new Error("No result for this search");
+            }
+            newsList = data.articles;
+            render();
+        }else{
+            throw new Error(data.message);
+        }
+
     } catch (error) {
-        console.error("Error fetching news:", error);
+        console.error("Error fetching news:", error.message);
+        errorRender(error.message);
     }
 };
+
 
 const getLatestNews = () => {
     url = new URL(
@@ -39,9 +49,9 @@ const getLatestNews = () => {
 
         `https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?`
     );
-  fetchNews();
-  console.log("rrrr", response);  
-  console.log("search-keyword", newsList) 
+    fetchNews();
+    console.log("rrrr", response);
+    console.log("search-keyword", newsList)
 };
 
 //ES6 문법
@@ -65,14 +75,14 @@ const getNewsByCategory = async (event) => {
 // 4. 키워드로 검색하기
 const getNewsBySearch = () => {
     searchNews = document.getElementById("search-news").value;
-    
+
     url = new URL(
         // `https://newsapi.org/v2/top-headlines?country=kr&q=${searchNews}&apiKey=${API_KEY}`
 
         `https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?q=${searchNews}`
     );
     fetchNews();
-    searchInput.value=" ";
+    searchInput.value = " ";
     console.log("search-News", data);
 };
 
@@ -80,49 +90,44 @@ const getNewsBySearch = () => {
 
 const openMenus = () => {
     document.getElementById("mySidenav").style.width = "250px";
-  };
-  
-  const closeNav = () => {
+};
+
+const closeNav = () => {
     document.getElementById("mySidenav").style.width = "0";
-  };
+};
 
 // 6.  Search window
-  const openSearch = () => {
+const openSearch = () => {
     let inputArea = document.getElementById("input-area");
     if (inputArea.style.display === "inline") {
-      inputArea.style.display = "none";
+        inputArea.style.display = "none";
     } else {
-      inputArea.style.display = "inline";
+        inputArea.style.display = "inline";
     }
-  };
+};
 
 
-  // 7. search with the enter button 
-
-  
-
-  
-
-  //Enter 버튼 클릭하면 자동으로 아이템 추가하기 및 글씨를 자동으로 지워줌
-  searchInput.addEventListener("keydown",(event) => {
+// 7. search with the enter button 
+//Enter 버튼 클릭하면 자동으로 아이템 추가하기 및 글씨를 자동으로 지워줌
+searchInput.addEventListener("keydown", (event) => {
     if (event.key === 'Enter') {
         searchButton.click();
         addTask();
-        }
-        
-    });
-
-    function addTask() {
-        console.log("clicked");
-      
-    
-        let taskValue = searchInput.value;
-        if (taskValue === "") {
-             return alert("검색어를 입력해주세요");
-            }
-            searchInput.value=" ";    
-
     }
+
+});
+
+function addTask() {
+    console.log("clicked");
+
+
+    let taskValue = searchInput.value;
+    if (taskValue === "") {
+        return alert("검색어를 입력해주세요");
+    }
+    searchInput.value = " ";
+
+}
 
 
 // 뉴스
@@ -147,10 +152,20 @@ const render = () => {
                 </div>
             </div> `
 
-   ) }).join('');
+        )
+    }).join('');
 
 
     document.getElementById("news-board").innerHTML = newsHTML;
 };
+
+//Error message
+const errorRender = (errorMessage) => {
+    const errorHTML = ` <div class="alert alert-danger" role="alert">
+                         ${errorMessage}
+                     </div>`;
+                     document.getElementById("news-board").innerHTML = errorHTML;
+ }
+ 
 
 getLatestNews();
