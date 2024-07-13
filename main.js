@@ -206,14 +206,24 @@ const paginationRender =  () => {
     let firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
 
     // It got to help from Bootstrap (부트스트렙의 도움을 받았다) Docs - Components - pagination
-    let paginationHTML = `<li class="page-item" onclick="moveToPage(${page-1})"><a class="page-link" href="#">Previous</a></li>`;
+    let paginationHTML =``;
+    if(page > 5) {
+        paginationHTML = `<li class="page-item previous-1" onclick="moveToPage(${page-1})"><a class="page-link" href="#">Previous</a></li>`;
+    } else {
+        paginationHTML =``;
+    }     
 
     for(let i = firstPage; i <= lastPage; i++) {
         paginationHTML += `<li class="page-item ${i === page ? 'active': ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>` // i === 현재page 라면 'active' 아니면 '빈공간' - " "안에서는 ' ' 사용해야한다.
     }
 
-    paginationHTML += `<li class="page-item" onclick="moveToPage(${page+1})"><a class="page-link" href="#">Next</a></li>`
+    if(page < 6) {
+        paginationHTML += `<li class="page-item" onclick="moveToPage(${page+1})"><a class="page-link" href="#">Next</a></li>`
 
+    } else if(page >= page.length){
+        paginationHTML= ``;
+    }
+    
     document.querySelector(".pagination").innerHTML = paginationHTML ;
 
     // <nav aria-label="Page navigation example">
