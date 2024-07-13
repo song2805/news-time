@@ -197,6 +197,9 @@ const paginationRender =  () => {
     const pageGroup = Math.ceil(page / groupSize);  // 올림을 해준다 (Math.ceil() 올림함수)
     // lastPage
     let lastPage = groupSize * pageGroup;
+    // &lt; &gt;
+    let paginationHTML =``;
+
     // 마지막 페이지그룹이 그룹사이즈보다 작다면 ?  lastPage = totalPage
     if(lastPage > totalPages) {
         lastPage = totalPages;
@@ -206,9 +209,12 @@ const paginationRender =  () => {
     let firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
 
     // It got to help from Bootstrap (부트스트렙의 도움을 받았다) Docs - Components - pagination
-    let paginationHTML =``;
-    if(page > 5) {
-        paginationHTML = `<li class="page-item previous-1" onclick="moveToPage(${page-1})"><a class="page-link" href="#">Previous</a></li>`;
+    
+    if(page > 1) {
+        paginationHTML = `<li class="page-item previous-1" onclick="moveToPage(1)">
+                            <a class="page-link" href="#">&laquo;</a>
+                          </li>
+                          <li class="page-item previous-1" onclick="moveToPage(${page-1})"><a class="page-link" href="#">&lt;</a></li>`;
     } else {
         paginationHTML =``;
     }     
@@ -217,33 +223,22 @@ const paginationRender =  () => {
         paginationHTML += `<li class="page-item ${i === page ? 'active': ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>` // i === 현재page 라면 'active' 아니면 '빈공간' - " "안에서는 ' ' 사용해야한다.
     }
 
-    if(page < 6) {
-        paginationHTML += `<li class="page-item" onclick="moveToPage(${page+1})"><a class="page-link" href="#">Next</a></li>`
+    if(page < totalPages) {
+        paginationHTML += `<li class="page-item" onclick="moveToPage(${page+1})"><a class="page-link" href="#">&gt;</a></li>
+        <li class="page-item" onclick="moveToPage(${totalPages})"><a class="page-link" href="#">&raquo;</a></li>`
 
-    } else if(page >= page.length){
+    } else if(page > totalPages){
         paginationHTML= ``;
     }
     
     document.querySelector(".pagination").innerHTML = paginationHTML ;
-
-    // <nav aria-label="Page navigation example">
-    //     <ul class="pagination">
-    //         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    //         <li class="page-item"><a class="page-link" href="#">1</a></li>
-    //         <li class="page-item"><a class="page-link" href="#">2</a></li>
-    //         <li class="page-item"><a class="page-link" href="#">3</a></li>
-    //         <li class="page-item"><a class="page-link" href="#">4</a></li>
-    //         <li class="page-item"><a class="page-link" href="#">5</a></li>
-    //         <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    //     </ul>
-    // </nav>
 
 };
 
 const moveToPage = async (pageNum) => {
     console.log("moveToPage", pageNum);
     page = pageNum;
-    fetchNews()   // 강의에서는 getNews()로 말함
+    fetchNews()   // 강의에서는 getNews()로 되어있다
 }
 
 
