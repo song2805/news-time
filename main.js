@@ -73,7 +73,7 @@ const getLatestNews = async() => {
 const getNewsByCategory = async (event) => {
 
     const category = event.target.textContent.toLowerCase();
-
+    page = 1;
     //2.카테고리별 뉴스 가져오기
     url = new URL(
         // `https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`
@@ -91,6 +91,8 @@ const getNewsByCategory = async (event) => {
 const getNewsBySearch = async () => {
 
     searchNews = document.getElementById("search-news").value;
+
+    page = 1;
 
     url = new URL(
         // `https://newsapi.org/v2/top-headlines?country=kr&q=${searchNews}&apiKey=${API_KEY}`
